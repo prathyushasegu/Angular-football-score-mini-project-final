@@ -9,7 +9,7 @@ import { LeaguesComponent } from './components/leagues/leagues.component';
 import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoaderComponent } from './components/loader/loader.component';
-import { MyInterceptor } from './services/app.interceptor';
+import { TokenInterceptor } from './services/app.interceptor';
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { MyInterceptor } from './services/app.interceptor';
     // Register your interceptor here
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: MyInterceptor,
+      useClass: TokenInterceptor,
       multi: true,
     },
   ],
