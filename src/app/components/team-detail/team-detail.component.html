@@ -1,0 +1,45 @@
+<div *ngIf="fixtures && fixtures.length > 0; else noRecords">
+  <table id="leagueTable">
+    <tbody>
+      <tr *ngFor="let fixture of fixtures">
+        <td>
+          <img
+            [src]="fixture.teams.home.logo"
+            alt="{{ fixture.teams.home.name }}"
+            width="30"
+            height="30"
+          />
+        </td>
+        <td>
+          {{ fixture.teams.home.name }}
+        </td>
+        <td>{{ fixture.score.fulltime.home }}</td>
+        <td>-</td>
+        <td>
+          <img
+            [src]="fixture.teams.away.logo"
+            alt="{{ fixture.teams.away.name }}"
+            width="30"
+            height="30"
+          />
+        </td>
+        <td>{{ fixture.teams.away.name }}</td>
+        <td>
+          {{ fixture.score.fulltime.away }}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7">
+          <button class="button" class="active" (click)="goToLeagueSelection()">
+            Back
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noRecords>
+  <!-- Display the "No records found" message -->
+  <p>No team found</p>
+</ng-template>

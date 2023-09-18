@@ -1,0 +1,77 @@
+<section>
+  <div class="menuLeaguesDiv">
+    <button
+      id="englandSelect"
+      (click)="getStandings('england')"
+      [class.active]="selectedLeague === 'england'"
+    >
+      England
+    </button>
+    <button
+      id="spainSelect"
+      (click)="getStandings('spain')"
+      [class.active]="selectedLeague === 'spain'"
+    >
+      Spain
+    </button>
+
+    <button
+      id="germanySelect"
+      (click)="getStandings('germany')"
+      [class.active]="selectedLeague === 'germany'"
+    >
+      Germany
+    </button>
+    <button
+      id="itlaySelect"
+      (click)="getStandings('itlay')"
+      [class.active]="selectedLeague === 'itlay'"
+    >
+      Itlay
+    </button>
+    <button
+      id="franceSelect"
+      (click)="getStandings('france')"
+      [class.active]="selectedLeague === 'france'"
+    >
+      France
+    </button>
+  </div>
+</section>
+<hr />
+<div *ngIf="leagues && leagues.length > 0; else noRecords">
+  <table id="leagueTable">
+    <thead>
+      <th></th>
+      <th></th>
+      <th>Name</th>
+      <th>Games</th>
+      <th>W</th>
+      <th>L</th>
+      <th>D</th>
+      <th>Goal Difference</th>
+      <th>Points</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let league of leagues">
+        <td>{{ league.rank }}</td>
+        <td><img src="{{ league.team.logo }}" width="30" height="30" /></td>
+        <td>
+          <a [routerLink]="['/teams', league.team.id]">{{
+            league.team.name
+          }}</a>
+        </td>
+        <td>{{ league.all.played }}</td>
+        <td>{{ league.all.win }}</td>
+        <td>{{ league.all.lose }}</td>
+        <td>{{ league.all.draw }}</td>
+        <td>{{ league.goalsDiff }}</td>
+        <td>{{ league.all.win * 3 + league.all.draw }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noRecords>
+  <!-- Display the "No records found" message -->
+  <p>No records found or no league selected</p>
+</ng-template>
