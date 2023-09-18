@@ -14,9 +14,9 @@ export class FootballService {
 
   private readonly leagueId = {
     england: 39,
-    spain: 107,
+    spain: 140,
     germany: 78,
-    itlay: 71,
+    itlay: 135,
     france: 61,
   };
 
