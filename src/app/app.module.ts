@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LeaguesComponent } from './components/leagues/leagues.component';
 import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LoaderComponent } from './components/loader/loader.component';
 import { TokenInterceptor } from './services/app.interceptor';
 
 @NgModule({
@@ -18,12 +17,7 @@ import { TokenInterceptor } from './services/app.interceptor';
     HttpClientModule,
     AppRoutingModule,
   ],
-  declarations: [
-    AppComponent,
-    LeaguesComponent,
-    TeamDetailComponent,
-    LoaderComponent,
-  ],
+  declarations: [AppComponent, LeaguesComponent, TeamDetailComponent],
   providers: [
     // Register your interceptor here
     {
