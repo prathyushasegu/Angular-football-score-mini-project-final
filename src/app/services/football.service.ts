@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiResponse as fixtureResponse } from '../models/fixture';
 import { ApiResponse as leagueResponse } from '../models/league';
-import { HttpHeadersService } from './HttpHeadersService';
 
 @Injectable({
   providedIn: 'root',
@@ -23,19 +22,17 @@ export class FootballService {
 
   selectedLeague: string;
 
-  constructor(
-    private http: HttpClient,
-    private httpHeadersService: HttpHeadersService
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  getStandings(league: string, season: string = this.currentYear.toString()) {
+  getStandings(
+    league: string,
+    season: string = this.currentYear.toString()
+  ): Observable<leagueResponse> {
     this.selectedLeague = league;
-    const headers = this.httpHeadersService.getHeaders();
 
     return this.http
       .get<leagueResponse>(
-        `${this.API}/standings?league=${this.leagueId[league]}&season=${season}`,
-        { headers }
+        `${this.API}/standings?league=${this.leagueId[league]}&season=${season}`
       )
       .pipe(
         map((response: leagueResponse) => {
@@ -50,11 +47,8 @@ export class FootballService {
     teamId: number,
     season: string = this.currentYear.toString()
   ): Observable<fixtureResponse> {
-    const headers = this.httpHeadersService.getHeaders();
     return this.http
-      .get(`${this.API}/fixtures?team=${teamId}&season=${season}&last=10`, {
-        headers,
-      })
+      .get(`${this.API}/fixtures?team=${teamId}&season=${season}&last=10`)
       .pipe(
         map((response: fixtureResponse) => {
           return response;

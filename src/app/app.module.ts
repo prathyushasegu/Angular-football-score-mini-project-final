@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LeaguesComponent } from './components/leagues/leagues.component';
 import { TeamDetailComponent } from './components/team-detail/team-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoaderComponent } from './components/loader/loader.component';
+import { MyInterceptor } from './services/app.interceptor';
 
 @NgModule({
   imports: [
@@ -22,6 +23,14 @@ import { LoaderComponent } from './components/loader/loader.component';
     LeaguesComponent,
     TeamDetailComponent,
     LoaderComponent,
+  ],
+  providers: [
+    // Register your interceptor here
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
   exports: [RouterModule],
