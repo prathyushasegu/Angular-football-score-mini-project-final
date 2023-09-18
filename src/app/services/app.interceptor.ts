@@ -19,7 +19,7 @@ export class MyInterceptor implements HttpInterceptor {
     const apiKey = '73effe53b514fe164eb475247efecbe2';
     const modifiedRequest = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${apiKey}`,
+        'x-rapidapi-key': `${apiKey}`,
       },
     });
 
