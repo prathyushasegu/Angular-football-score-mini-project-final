@@ -16,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // Add your API key to the request headers here
-    const apiKey = '6703a81d79d95d81e2dbb55eca2b5281';
+    const apiKey = '61c0d9a6c20c206af96c423d5d876355';
     const modifiedRequest = request.clone({
       setHeaders: {
         'x-rapidapi-key': `${apiKey}`,
